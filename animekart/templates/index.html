@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="icon" href="/static/shop/icon.jpg">
+    <title>Welcome to Electrical Store</title>
+    <style>
+#qq{
+    margin-left: 17px;
+    }
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Electronic Basket</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+{% if user.is_authenticated %}
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item {% block homeactive %} {% endblock homeactive %}">
+        <a class="nav-link" href="/shop">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item {% block aboutactive %} {% endblock aboutactive %}">
+        <a class="nav-link" href="/shop/about">About Us</a>
+      </li>
+
+      <li class="nav-item {% block trackeractive %} {% endblock trackeractive %}">
+        <a class="nav-link" href="/shop/tracker">Tracker</a>
+      </li>
+
+      <li class="nav-item {% block blogactive %} {% endblock blogactive %}">
+        <a class="nav-link" href="/blog">Blog</a>
+      </li>
+
+       <li class="nav-item {% block contactactive %} {% endblock contactactive %}">
+        <a class="nav-link" href="/shop/contact">Contact Us</a>
+      </li>
+      <div class="dropdown ml-2">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="MenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Welcome {{ user.get_username }}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="acclabel">
+          <a class="dropdown-item" href="{% url 'loginuser' %}">Login</a>
+          <a class="dropdown-item" href="{% url 'signupuser' %}">Sign Up</a>
+          <form method='POST' action="{% url 'logoutuser' %}" class='ml-3'>
+               {% csrf_token %}
+            <button type='submit' id='qq ' class='btn btn-success'>Logout</button></form>
+        </div>
+      </div>
+          {% endif %}
+
+    </ul>
+  </nav>
+    <div class='container'>
+   <div class="jumbotron">
+  <h1 class="display-4">Welcome to Electronic Bssket</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <a class="btn btn-primary btn-lg" href="{% url 'loginuser' %}" role="button">Login</a>
+    <a class="btn btn-primary btn-lg" href="{% url 'signupuser' %}" role="button">Signup</a>
+
+</div>
+</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

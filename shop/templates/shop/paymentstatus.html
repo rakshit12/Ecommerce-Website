@@ -1,0 +1,38 @@
+{% extends 'shop/base.html' %}
+{% block title%} Shoppers Cart{% endblock %}
+{% block body %}
+<div class="container">
+
+    <div class="col my-4">
+        <h2>Payment status regarding your order Id {{response.ORDERID}}</h2>
+        {% if response.RESPCODE == '01' %}
+        <div class="alert alert-success ">
+  <strong class='m-auto' align='center'>Order Successful!</strong>
+</div>
+        <h2>Your Order Details</h2>
+        <div class="my-4">
+            <ul class="list-group" id="citems">
+              <li class="list-group-item d-flex justify-content-between align-items-center">Your Tracker ID     <span class="badge ">{{response.ORDERID}}</span></li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">Your Transection ID <span class="badge ">{{response.TXNID}}</span></li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">Your status ID      <span class="badge ">{{response.STATUS}}</span></li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">Transection Date    <span class="badge ">{{response.TXNDATE}}</span></li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">Amount Paid         <span class="badge ">{{response.TXNAMOUNT}}</span></li>
+
+            </ul>
+        </div>
+        {% else %}
+        <div class="alert alert-danger">
+  <strong>Order Faliure!</strong> 
+</div>
+        {% endif%}
+
+    </div>
+
+    </div>
+
+</div>
+{% endblock %}
+{% block js %}
+<script>
+</script>
+{% endblock %}
